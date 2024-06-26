@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euro Cup History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #0057b7;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        .year-btn {
+            background-color: #0057b7;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .year-btn:hover {
+            background-color: #003a7a;
+        }
+        #details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #0057b7;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Euro Cup History</h1>
+    </header>
+    <main>
+        <h2>Click on a year to see details:</h2>
+        <div class="timeline" id="timeline"></div>
+        <div id="details"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Euro Cup History. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const euroData = {
+            "2020": { winner: "Italy", host: "Multiple countries", runnerUp: "England", topScorer: "Cristiano Ronaldo (Portugal) & Patrik Schick (Czech Republic)" },
+            "2016": { winner: "Portugal", host: "France", runnerUp: "France", topScorer: "Antoine Griezmann (France)" },
+            "2012": { winner: "Spain", host: "Poland & Ukraine", runnerUp: "Italy", topScorer: "Fernando Torres (Spain)" },
+            "2008": { winner: "Spain", host: "Austria & Switzerland", runnerUp: "Germany", topScorer: "David Villa (Spain)" },
+            "2004": { winner: "Greece", host: "Portugal", runnerUp: "Portugal", topScorer: "Milan Baroš (Czech Republic)" },
+            "2000": { winner: "France", host: "Belgium & Netherlands", runnerUp: "Italy", topScorer: "Patrick Kluivert (Netherlands) & Savo Milošević (Yugoslavia)" },
+            "1996": { winner: "Germany", host: "England", runnerUp: "Czech Republic", topScorer: "Alan Shearer (England)" },
+            "1992": { winner: "Denmark", host: "Sweden", runnerUp: "Germany", topScorer: "Henrik Larsen (Denmark), Karl-Heinz Riedle (Germany), Dennis Bergkamp (Netherlands) & Tomas Brolin (Sweden)" },
+            "1988": { winner: "Netherlands", host: "West Germany", runnerUp: "Soviet Union", topScorer: "Marco van Basten (Netherlands)" },
+            "1984": { winner: "France", host: "France", runnerUp: "Spain", topScorer: "Michel Platini (France)" },
+            "1980": { winner: "West Germany", host: "Italy", runnerUp: "Belgium", topScorer: "Klaus Allofs (West Germany)" },
+            "1976": { winner: "Czechoslovakia", host: "Yugoslavia", runnerUp: "West Germany", topScorer: "Dieter Müller (West Germany)" },
+            "1972": { winner: "West Germany", host: "Belgium", runnerUp: "Soviet Union", topScorer: "Gerd Müller (West Germany)" },
+            "1968": { winner: "Italy", host: "Italy", runnerUp: "Yugoslavia", topScorer: "Dragan Džajić (Yugoslavia)" },
+            "1964": { winner: "Spain", host: "Spain", runnerUp: "Soviet Union", topScorer: "Jesús María Pereda (Spain) & Ferenc Bene (Hungary)" },
+            "1960": { winner: "Soviet Union", host: "France", runnerUp: "Yugoslavia", topScorer: "François Heutte (France), Viktor Ponedelnik (Soviet Union), Milan Galić (Yugoslavia) & Dražan Jerković (Yugoslavia)" },
+        };
+
+        const timeline = document.getElementById('timeline');
+        const details = document.getElementById('details');
+
+        Object.keys(euroData).reverse().forEach(year => {
+            const button = document.createElement('button');
+            button.textContent = year;
+            button.classList.add('year-btn');
+            button.addEventListener('click', () => showDetails(year));
+            timeline.appendChild(button);
+        });
+
+        function showDetails(year) {
+            const data = euroData[year];
+            details.innerHTML = `
+                <h3>Euro ${year}</h3>
+                <p><strong>Winner:</strong> ${data.winner}</p>
+                <p><strong>Host:</strong> ${data.host}</p>
+                <p><strong>Runner-up:</strong> ${data.runnerUp}</p>
+                <p><strong>Top Scorer:</strong> ${data.topScorer}</p>
+            `;
+        }
+
+        // Show the most recent Euro Cup details by default
+        showDetails("2020");
+    </script>
+</body>
+</html>
